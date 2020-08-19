@@ -9,7 +9,14 @@ const CategoryMealScreen = props => {
   const renderMealItem = itemData => {
     return (
       <View style={styles.mealItem}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={()=> {
+
+            props.navigation.navigate({
+              routeName: 'MealDetail',
+              params: {
+                mealId: itemData.item.id,
+              }
+        })}}>
           <View>
             <View style={{ ...styles.mealRow, ...styles.mealHeader }}>
               <ImageBackground source={{uri: itemData.item.imageUrl}} style={styles.backgroundImage}>

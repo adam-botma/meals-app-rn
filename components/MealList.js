@@ -1,10 +1,13 @@
 import React from 'react';
 import { FlatList, StyleSheet, View, TouchableOpacity, ImageBackground, Text } from 'react-native';
+import { useSelector } from 'react-redux';
 
 
 const MealList = (props) => {
+  const favoriteMeals = useSelector(state => state.meals.favoriteMeals);
 
   const renderMealItem = itemData => {
+    const isFavorite = favoriteMeals.some(meal => meal.id === itemData.item.id);
     return (
       <View style={styles.mealItem}>
         <TouchableOpacity onPress={() => {
@@ -13,6 +16,8 @@ const MealList = (props) => {
             routeName: 'MealDetail',
             params: {
               mealId: itemData.item.id,
+              mealTitle: itemData.item.title,
+              isFavorite: isFavorite,
             }
           })
         }}>

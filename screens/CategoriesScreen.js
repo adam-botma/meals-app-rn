@@ -41,7 +41,10 @@ CategoriesScreen.navigationOptions = navData=> {
     backgroundColor: Platform.OS === 'android' ? Colors.primaryColor : 'white'
   },
   headerTintColor: Platform.OS === 'android' ? 'white' : Colors.primaryColor,
-  headerLeft: (
+  headerTitleStyle: {
+    fontFamily: 'open-sans-bold'
+  },
+  headerLeft: ()=>(
     <HeaderButtons HeaderButtonComponent={HeaderButton} >
       <Item title='Menu' iconName='ios-menu' onPress={()=> {
         navData.navigation.toggleDrawer();

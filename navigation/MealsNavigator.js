@@ -8,7 +8,7 @@ import CategoryMealsScreen from '../screens/CategoryMealsScreen';
 import MealDetailScreen from '../screens/MealDetailsScreen';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import FavoritesScreen from '../screens/FavoritesScreen'
-import { Colors } from '../constants/Colors';
+import  Colors  from '../constants/Colors';
 import  Ionicons  from 'react-native-vector-icons/Ionicons';
 
 const MealsNavigator = createStackNavigator({
@@ -67,8 +67,17 @@ const MealsFavTabNavigator = createBottomTabNavigator(
 )
 const MainNavigator = createDrawerNavigator(
   {
-    MealsFavs: MealsFavTabNavigator,
-    Filters: FiltersStack
+    MealsFavs: {screen: MealsFavTabNavigator, navigationOptions:{drawerLabel: 'Meals'}},
+    Filters: {screen: FiltersStack, navigationOptions:{drawerLabel: 'Filtered Search'}}
+  },
+  {
+    contentOptions: {
+      activeTintColor: Colors.accentColor,
+      labelStyle: {
+        fontFamily: 'open-sans'
+      }
+
+    }
   }
 
 );

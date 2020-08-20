@@ -4,12 +4,15 @@ import Colors from '../constants/Colors';
 import { CATEGORIES, MEALS } from '../data/dummy-data';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import MealList from '../components/MealList';
+import { useSelector } from 'react-redux';
 
 
 const CategoryMealScreen = props => {
 
   const categoryId = props.navigation.getParam('categoryId');
-  const displayedMeals = MEALS.filter(meal => meal.categoryIds.indexOf(categoryId) >= 0);
+
+  const availableMeals = useSelector(state => state.meals.filteredMeals);
+  const displayedMeals = availableMeals.filter(meal => meal.categoryIds.indexOf(categoryId) >= 0);
 
 
   return (
@@ -23,6 +26,9 @@ CategoryMealScreen.navigationOptions = (navigationData) => {
 
   return {
     headerTitle: categoryName,
+    headerTitleStyle: {
+      fontFamily: 'open-sans-bold'
+    },
     headerStyle: {
       backgroundColor: Platform.OS === 'android' ? Colors.primaryColor : 'white'
     },

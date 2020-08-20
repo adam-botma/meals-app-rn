@@ -1,5 +1,8 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { HeaderButtons, Item } from 'react-navigation-header-buttons';
+import HeaderButton from '../components/HeaderButton';
+import Colors from '../constants/Colors';
 
 const FiltersScreen = props => {
 
@@ -9,6 +12,23 @@ const FiltersScreen = props => {
     </View>
   );
 
+};
+
+FiltersScreen.navigationOptions = navData => {
+  return {
+  headerTitle: 'Filtered Search',
+  headerStyle: {
+    backgroundColor: Platform.OS === 'android' ? Colors.primaryColor : 'white'
+  },
+  headerTintColor: Platform.OS === 'android' ? 'white' : Colors.primaryColor,
+  headerLeft: (
+    <HeaderButtons HeaderButtonComponent={HeaderButton} >
+      <Item title='Menu' iconName='ios-menu' onPress={() => {
+        navData.navigation.toggleDrawer();
+      }} />
+    </HeaderButtons>
+  )
+}
 };
 
 
